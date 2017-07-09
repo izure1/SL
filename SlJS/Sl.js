@@ -2,7 +2,7 @@
 
 /*
  *  Scrolling Loader
- *  Sl.js v1.0.3
+ *  Sl.js v1.0.4
  *
  *  Copyright (C) izure.org 2017. All rights reserved.
  *  MIT LICENSE
@@ -105,7 +105,14 @@ Sl.root.queue = [];
 
 Sl.check = function () {
 	if (document.readyState !== 'complete') return;
-	//
+	// timer delay for performance
+	if (Sl.root.timer) {
+		clearTimeout(Sl.root.timer);
+	}
+	Sl.root.timer = setTimeout(Sl.__fire, 100);
+};
+
+Sl.__fire = function () {
 	var list = Sl.root.list;
 	var scrollY = window.scrollY + document.documentElement.clientHeight;
 	for (var i = 0, len = list.length; i < len; i++) {
