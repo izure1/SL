@@ -10,11 +10,6 @@
 		var sl = new Sl('div', {
 			class: 'sample_wrap',
 			html: function (data) {
-				// show opacity transition
-				setTimeout(function () {
-					console.log(data.parentNode);
-					data.parentNode.className = 'sample_wrap show';
-				}, 100);
 				return data;
 			}
 		}).observe('#sl').then(function (element, index) {
@@ -24,6 +19,9 @@
 			newImg.src = 'img/sample_' + (index + 1) + '.jpg';
 			newImg.onload = function () {
 				self.throw(newImg);
+				setTimeout(function () {
+					newImg.parentNode.className = 'sample_wrap show';
+				}, 100);
 			};
 			// no more image
 			newImg.onerror = function () {
