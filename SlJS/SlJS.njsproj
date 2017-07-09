@@ -11,7 +11,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>fd6c44e8-9531-4ac4-94a7-0e1c9ff311ea</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Sl1.0.3.js</StartupFile>
+    <StartupFile>Sl.js</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -29,8 +29,15 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Sl1.0.3.js" />
+    <Compile Include="Sl.js" />
     <Content Include="README.md" />
+    <Content Include="sample\css\sample.css" />
+    <Content Include="sample\sample.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="sample\" />
+    <Folder Include="sample\img\" />
+    <Folder Include="sample\css\" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />

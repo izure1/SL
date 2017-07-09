@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+	<link rel="stylesheet" href="css/sample.css" />
+	<script type="text/javascript" src="../Sl.js"></script>
+	<script type="text/javascript">
+		var sl = new Sl('div', {
+			class: 'sample_wrap',
+			html: function (data) {
+				// show opacity transition
+				setTimeout(function () {
+					console.log(data.parentNode);
+					data.parentNode.className = 'sample_wrap show';
+				}, 100);
+				return data;
+			}
+		}).observe('#sl').then(function (element, index) {
+			var self = this;
+			var newImg = document.createElement('img');
+			// load image
+			newImg.src = 'img/sample_' + (index + 1) + '.jpg';
+			newImg.onload = function () {
+				self.throw(newImg);
+			};
+			// no more image
+			newImg.onerror = function () {
+				element.innerHTML = 'END!';
+			};
+		});
+	</script>
+</head>
+<body>
+	<div id="header">
+		<div class="header_info">
+			<h1>Sl.js Sample page</h1>
+			<p>
+				<small>MIT LICENSE</small>
+			</p>
+		</div>
+	</div>
+	<div id="container">
+		<div>
+			<span id="sl">more...</span>
+		</div>
+	</div>
+	<div id="footer">
+		<div class="footer_info">
+			<p>
+				<a href="https://izure.org">https://izure.org</a>
+			</p>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+﻿html, body {
+	padding: 0;
+	margin: 0;
+}
+
+.header_info {
+	text-align: center;
+}
+
+#container > div {
+	text-align: center;
+}
+
+.footer_info {
+	text-align: center;
+}
+
+.sample_wrap {
+	text-align: center;
+	background-color: #fafafa;
+	margin: 20px;
+	padding: 20px;
+	opacity: 0;
+	transition: opacity 1s linear;
+}
+
+.sample_wrap.show {
+	opacity: 1;
+}
+
+.sample_wrap > img {
+	height: 300px;
+}
