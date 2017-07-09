@@ -1,9 +1,0 @@
-{
-  "name": "sl-js",
-  "version": "0.0.0",
-  "description": "SlJS",
-  "main": "app.js",
-  "author": {
-    "name": "izure"
-  }
-}
