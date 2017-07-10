@@ -2,7 +2,7 @@
 
 /*
  *  Scrolling Loader
- *  Sl.js v1.0.4
+ *  Sl.js v1.0.5
  *
  *  Copyright (C) izure.org 2017. All rights reserved.
  *  MIT LICENSE
@@ -128,9 +128,9 @@ Sl.__fire = function () {
 Sl.root.fn.getNodeList = function (elemTar) {
 	var items;
 	if (elemTar instanceof Array) items = elemTar;
-	else if (elemTar instanceof NodeList) items = Array.from(elemTar);
+	else if (elemTar instanceof NodeList) items = Array.prototype.slice.call(elemTar);
 	else if (elemTar instanceof HTMLElement) items = [elemTar];
-	else items = Array.from(document.querySelectorAll(elemTar));
+	else items = Array.prototype.slice.call(document.querySelectorAll(elemTar));
 	return items;
 };
 
