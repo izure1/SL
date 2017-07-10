@@ -8,6 +8,24 @@
  *  MIT LICENSE
  */
 
+// for ie9
+try {
+	if (!Array.prototype.forEach) {
+		Array.prototype.forEach = function (fn) {
+			for (var i = 0, len = this.length; i < len; i++) fn(this[i], i);
+		};
+	}
+	if (!Array.from) {
+		Array.from = function (arr) {
+			for (var rets = [], i = 0, len = arr.length; i < len; i++) rets[i] = arr[i];
+			return rets;
+		};
+	}
+}
+catch (e) {
+	throw new Error('Your browser doesn`t support Sl.js');
+};
+
 /**
  *
  * @param {String} tagname
@@ -26,7 +44,7 @@ var Sl = function (tagname, option) {
 Sl.prototype.observe = function (elemTar) {
 	if (document.readyState === 'complete') this.__attach(elemTar);
 	else Sl.root.queue.push({
-		sl: this, target: elemTar
+		'sl': this, 'target': elemTar
 	});
 	return this;
 };
@@ -51,11 +69,11 @@ Sl.prototype.__attach = function (elemTar) {
 	var items = Sl.root.fn.getNodeList(elemTar), self = this;
 	items.forEach(function (item) {
 		self.target.push({
-			index: 0,
-			element: item,
-			active: true,
-			value: undefined,
-			throw: function (value) {
+			'index': 0,
+			'element': item,
+			'active': true,
+			'value': undefined,
+			'throw': function (value) {
 				this.index++;
 				this.value = value;
 				this.active = true;
@@ -127,15 +145,26 @@ Sl.__fire = function () {
 
 Sl.root.fn.getNodeList = function (elemTar) {
 	var items;
+	var HTMLElement = typeof HTMLElement !== 'undefined' ? HTMLElement : Element; 
 	if (elemTar instanceof Array) items = elemTar;
-	else if (elemTar instanceof NodeList) items = Array.prototype.slice.call(elemTar);
+	else if (elemTar instanceof NodeList) items = Array.from(elemTar);
 	else if (elemTar instanceof HTMLElement) items = [elemTar];
-	else items = Array.prototype.slice.call(document.querySelectorAll(elemTar));
+	else items = Array.from(document.querySelectorAll(elemTar));
 	return items;
 };
 
-window.addEventListener('scroll', Sl.check);
-window.addEventListener('load', function () {
+Sl.root.fn.attachEvent = function (e, fn) {
+	if (window.addEventListener) {
+		window.addEventListener(e, fn);
+	}
+	else if (window.attachEvent) {
+		window.attachEvent('on' + e, fn);
+	}
+	else throw new Error('Your browser doesn`t support Sl.js');
+};
+
+Sl.root.fn.attachEvent('scroll', Sl.check);
+Sl.root.fn.attachEvent('load', function () {
 	Sl.root.queue.forEach(function (item) {
 		item.sl.__attach(item.target);
 	});

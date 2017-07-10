@@ -8,8 +8,8 @@
 	<script type="text/javascript" src="../Sl.js"></script>
 	<script type="text/javascript">
 		var sl = new Sl('div', {
-			class: 'sample_wrap',
-			html: function (data) {
+			'class': 'sample_wrap',
+			'html': function (data) {
 				return data;
 			}
 		}).observe('#sl').then(function (element, index) {
@@ -27,7 +27,6 @@
 			newImg.onerror = function () {
 				element.innerHTML = 'END!';
 				sl.remove(); // destroy sl
-				console.log(1);
 			};
 		});
 	</script>
