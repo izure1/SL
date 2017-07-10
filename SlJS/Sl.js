@@ -112,8 +112,8 @@ Sl.check = function () {
 };
 
 Sl.__fire = function () {
-	var list = Sl.root.list;
-	var scrollY = window.scrollY + document.documentElement.clientHeight;
+	var list = Sl.root.list, docElem = document.documentElement;
+	var scrollY = docElem.scrollTop + docElem.clientHeight;
 	for (var i = 0, len = list.length; i < len; i++) {
 		var sl = list[i];
 		var j = sl.target.length;
