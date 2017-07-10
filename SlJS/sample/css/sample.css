@@ -1,6 +1,7 @@
 ﻿html, body {
 	padding: 0;
 	margin: 0;
+	background-color: #fafafa;
 }
 
 .header_info {
@@ -15,9 +16,12 @@
 	text-align: center;
 }
 
+.footer_logo {
+	margin: 50px;
+}
+
 .sample_wrap {
 	text-align: center;
-	background-color: #fafafa;
 	margin: 20px;
 	padding: 20px;
 	opacity: 0;

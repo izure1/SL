@@ -26,6 +26,8 @@
 			// no more image
 			newImg.onerror = function () {
 				element.innerHTML = 'END!';
+				sl.remove(); // destroy sl
+				console.log(1);
 			};
 		});
 	</script>
@@ -49,6 +51,7 @@
 			<p>
 				<a href="https://izure.org">https://izure.org</a>
 			</p>
+			<img src="img/logo.png" class="footer_logo" />
 		</div>
 	</div>
 </body>

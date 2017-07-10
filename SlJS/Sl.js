@@ -32,10 +32,9 @@ Sl.prototype.observe = function (elemTar) {
 };
 
 Sl.prototype.remove = function (elemTar) {
-	elemTar = elemTar || this.target;
-	var items = Sl.root.fn.getNodeList(elemTar), self = this;
+	var items = elemTar || this.target, self = this;
 	for (var i = 0, len = this.target.length; i < len; i++) {
-		var index = items.indexOf(this.target[i].element), isExist = index !== -1;
+		var index = items.indexOf(this.target[i]), isExist = index !== -1;
 		if (isExist) this.target.splice(i, 1);
 	}
 	if (this.target.length === 0) {
