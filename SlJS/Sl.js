@@ -2,7 +2,7 @@
 
 /*
  *  Scrolling Loader
- *  Sl.js v1.0.5
+ *  Sl.js v1.1.0
  *
  *  Copyright (C) izure.org 2017. All rights reserved.
  *  MIT LICENSE
@@ -50,7 +50,7 @@ Sl.prototype.observe = function (elemTar) {
 };
 
 Sl.prototype.remove = function (elemTar) {
-	var items = elemTar || this.target, self = this;
+	var items = elemTar ? [elemTar] : this.target, self = this;
 	for (var i = 0, len = this.target.length; i < len; i++) {
 		var index = items.indexOf(this.target[i]), isExist = index !== -1;
 		if (isExist) this.target.splice(i, 1);
@@ -78,6 +78,9 @@ Sl.prototype.__attach = function (elemTar) {
 				this.value = value;
 				this.active = true;
 				self.__append.call(self, this);
+			},
+			'remove': function () {
+				self.remove(this);
 			}
 		});
 	});
@@ -146,7 +149,8 @@ Sl.__fire = function () {
 Sl.root.fn.getNodeList = function (elemTar) {
 	var items;
 	var HTMLElement = typeof HTMLElement !== 'undefined' ? HTMLElement : Element; 
-	if (elemTar instanceof Array) items = elemTar;
+	if (!elemTar) items = [];
+	else if (elemTar instanceof Array) items = elemTar;
 	else if (elemTar instanceof NodeList) items = Array.from(elemTar);
 	else if (elemTar instanceof HTMLElement) items = [elemTar];
 	else items = Array.from(document.querySelectorAll(elemTar));
