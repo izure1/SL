@@ -2,7 +2,7 @@
 
 /*
  *  Scrolling Loader
- *  Sl.js v1.1.0
+ *  Sl.js v1.1.2
  *
  *  Copyright (C) izure.org 2017. All rights reserved.
  *  MIT LICENSE
@@ -10,17 +10,13 @@
 
 // for ie9
 try {
-	if (!Array.prototype.forEach) {
-		Array.prototype.forEach = function (fn) {
-			for (var i = 0, len = this.length; i < len; i++) fn(this[i], i);
-		};
-	}
-	if (!Array.from) {
-		Array.from = function (arr) {
-			for (var rets = [], i = 0, len = arr.length; i < len; i++) rets[i] = arr[i];
-			return rets;
-		};
-	}
+	if (!Array.prototype.forEach) Array.prototype.forEach = function (fn) {
+		for (var i = 0, len = this.length; i < len; i++) fn(this[i], i);
+	};
+	if (!Array.from) Array.from = function (arr) {
+		for (var rets = [], i = 0, len = arr.length; i < len; i++) rets[i] = arr[i];
+		return rets;
+	};
 }
 catch (e) {
 	throw new Error('Your browser doesn`t support Sl.js');
@@ -133,8 +129,8 @@ Sl.check = function () {
 };
 
 Sl.__fire = function () {
-	var list = Sl.root.list, docElem = document.documentElement;
-	var scrollY = docElem.scrollTop + docElem.clientHeight;
+	var list = Sl.root.list, doc = document.documentElement;
+	var scrollY = (window.pageYOffset || doc.scrollTop) + doc.clientHeight;
 	for (var i = 0, len = list.length; i < len; i++) {
 		var sl = list[i];
 		var j = sl.target.length;
